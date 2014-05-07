@@ -1,0 +1,15 @@
+language: c
+env:
+ matrix:
+  - COMPILER=gcc
+  - COMPILER=clang
+
+script:
+ - cd build
+ - CC=${COMPILER} cmake ..
+ - make build_tests
+ - make test
+
+before_install:
+ - sudo apt-get install -y libcmocka-dev libssl-dev libjansson-dev
+
