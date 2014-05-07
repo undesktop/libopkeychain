@@ -11,11 +11,8 @@ script:
  - make test
 
 before_install:
- - wget https://open.cryptomilk.org/attachments/download/37/cmocka-0.4.0.tar.xz -O /tmp/cmocka-0.4.0.tar.xz
- - tar -xJvf /tmp/cmocka-0.4.0.tar.xz
- - mkdir cmocka-0.4.0/build && cd cmocka-0.4.0/build
- - cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Debug ..
- - make && sudo make install
+ - wget http://balthasar.plejeck.com/up/libcmocka_0.4.0-1_i386.deb http://balthasar.plejeck.com/up/libcmocka-dev_0.4.0-1_i386.deb
+ - sudo dpkg --install libcmocka_0.4.0-1_i386.deb libcmocka-dev_0.4.0-1_i386.deb
  - sudo apt-get install -y libssl-dev libjansson-dev
 
 notifications:
