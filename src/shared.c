@@ -9,4 +9,3 @@ int un_base64
 	BIO *bio, *b64;
 
 }
-bool saltystring_is_salty (
