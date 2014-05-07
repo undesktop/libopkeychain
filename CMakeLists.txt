@@ -25,11 +25,30 @@ pkg_check_modules ( DEPS
 	REQUIRED libcrypto>=1.0.1
 )
 include_directories ( ${DEPS_INCLUDE_DIRS} )
-link_libraries ( ${DEPS_LIBRARIES} )
 link_directories ( ${DEPS_LIBRARY_DIRS} )
 add_definitions ( ${DEPS_CFLAGS} )
 
 
+if ( CMAKE_BUILD_TYPE MATCHES DEBUG )
+	pkg_check_modules ( TESTDEPS
+		REQUIRED cmocka
+	)
+	include_directories ( ${TESTDEPS_INCLUDE_DIRS} )
+	link_directories ( ${TESTDEPS_LIBRARY_DIRS} )
+	add_definitions ( ${TESTDEPS_CFLAGS} )
+endif ( CMAKE_BUILD_TYPE MATCHES DEBUG )
+
 ### COMPILE ###
 add_library ( agilekeychain SHARED src/agilekeychain.c )
+target_link_libraries ( agilekeychain ${DEPS_LIBRARIES} )
 add_library ( cloudkeychain SHARED src/cloudkeychain.c )
+target_link_libraries ( agilekeychain ${DEPS_LIBRARIES} )
+
+### TESTING ###
+# TODO: dynamically link the library in
+enable_testing ()
+
+add_executable ( test_base64 EXCLUDE_FROM_ALL test/base64.c )
+target_link_libraries ( test_base64 ${DEPS_LIBRARIES} ${TESTDEPS_LIBRARIES} )
+add_test ( Base64 test_base64 )
+add_custom_target ( build_tests DEPENDS test_base64 )

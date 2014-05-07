@@ -6,7 +6,7 @@
 #include "../src/shared.c"
 
 /* A test case that does nothing and succeeds. */
-static void test_un_base64 (void unused **state) {
+static void test_un_base64 (void **state) {
 	char *in = "YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXo=";
 	char *out_expected = "abcdefghijklmnopqrstuvwxyz";
 	char **out;
