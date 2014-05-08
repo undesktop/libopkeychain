@@ -20,8 +20,9 @@ set ( WEBSITE "http://undesktop.github.io/libopkeychain/" )
 
 ### LOAD PACKAGES ###
 find_package ( PkgConfig REQUIRED )
+
 pkg_check_modules ( DEPS
-	REQUIRED json-c
+	REQUIRED jansson
 	REQUIRED libcrypto>=1.0.1
 )
 include_directories ( ${DEPS_INCLUDE_DIRS} )
@@ -42,7 +43,7 @@ endif ( CMAKE_BUILD_TYPE MATCHES DEBUG )
 add_library ( agilekeychain SHARED src/agilekeychain.c )
 target_link_libraries ( agilekeychain ${DEPS_LIBRARIES} )
 add_library ( cloudkeychain SHARED src/cloudkeychain.c )
-target_link_libraries ( agilekeychain ${DEPS_LIBRARIES} )
+target_link_libraries ( cloudkeychain ${DEPS_LIBRARIES} )
 
 ### TESTING ###
 # TODO: dynamically link the library in
