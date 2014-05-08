@@ -6,7 +6,7 @@ env:
 
 script:
  - cd build
- - CC=${COMPILER} cmake ..
+ - CC=${COMPILER} cmake .. -DCMAKE_BUILD_TYPE=DEBUG
  - make build_tests
  - make test
 
