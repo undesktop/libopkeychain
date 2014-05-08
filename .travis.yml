@@ -6,9 +6,9 @@ env:
 
 script:
  - cd build
- - CC=${COMPILER} cmake .. -DCMAKE_BUILD_TYPE=DEBUG -DCTEST_OUTPUT_ON_FAILURE
+ - CC=${COMPILER} cmake .. -DCMAKE_BUILD_TYPE=DEBUG
  - make build_tests
- - make test
+ - ctest --output-on-failure
 
 before_install:
  - wget http://balthasar.plejeck.com/up/libcmocka_0.4.0-1_amd64.deb http://balthasar.plejeck.com/up/libcmocka-dev_0.4.0-1_amd64.deb
