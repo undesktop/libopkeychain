@@ -46,10 +46,27 @@ add_library ( cloudkeychain SHARED src/cloudkeychain.c )
 target_link_libraries ( cloudkeychain ${DEPS_LIBRARIES} )
 
 ### TESTING ###
-# TODO: dynamically link the library in
-enable_testing ()
+if ( CMAKE_BUILD_TYPE MATCHES DEBUG )
+	# TODO: dynamically link the library in
+	enable_testing ()
 
-add_executable ( test_base64 EXCLUDE_FROM_ALL test/base64.c )
-target_link_libraries ( test_base64 ${DEPS_LIBRARIES} ${TESTDEPS_LIBRARIES} )
-add_test ( Base64 test_base64 )
-add_custom_target ( build_tests DEPENDS test_base64 )
+	if ( CMAKE_CONFIGURATION_TYPES )
+		add_custom_target ( check COMMAND ${CMAKE_CTEST_COMMAND} --force-new-ctest-process
+		                                                         --output-on-failure
+		                                                         --build-config "$<CONFIGURATION>"
+		                          DEPENDS build_tests )
+	else ( )
+		add_custom_target ( check COMMAND ${CMAKE_CTEST_COMMAND} --force-new-ctest-process
+		                                                         --output-on-failure
+		                          DEPENDS build_tests )
+	endif ( )
+
+
+	### ACTUAL TESTS ###
+
+	add_executable ( test_base64 EXCLUDE_FROM_ALL test/base64.c )
+	target_link_libraries ( test_base64 ${DEPS_LIBRARIES} ${TESTDEPS_LIBRARIES} )
+	add_test ( Base64 test_base64 )
+
+	add_custom_target ( build_tests DEPENDS test_base64 )
+endif ( CMAKE_BUILD_TYPE MATCHES DEBUG )
