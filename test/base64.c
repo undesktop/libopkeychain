@@ -13,7 +13,8 @@ static void test_un_base64 (void **state) {
 	int **len;
 
 	un_base64(in, out, len);
-	assert_string_equal(&out, out_expected);
+	assert_int_equal(**len, 26);
+	assert_memory_equal(*out, out_expected, **len);
 }
 int main(void) {
 	const UnitTest tests[] = {
