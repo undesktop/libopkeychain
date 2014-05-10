@@ -4,7 +4,7 @@
 #include <string.h>
 #include "shared.h"
 
-int un_base64
+int base64_decode
 (char *in, char **out, int **len)
 {
 	BIO *bio, *b64;

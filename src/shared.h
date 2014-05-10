@@ -6,7 +6,7 @@
  * @param[out]  dest  A pointer which will be aimed at the output bytestring
  * @param[out]  len   A pointer to a 
  */
-int un_base64 (
+int base64_decode (
 	char *in,
 	char **out,
 	int **len
