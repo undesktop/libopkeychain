@@ -11,8 +11,7 @@ static void test_base64_decode (void **state) {
 	char *out_expected = "abcdefghijklmnopqrstuvwxyz";
 	bytes *out = malloc(sizeof(bytes));
 
-	int ret = base64_decode(in, out);
-	assert_int_equal(ret, 0);
+	assert_return_code(base64_decode(in, out), 0);
 	assert_int_equal(out->length, 26);
 	assert_memory_equal(out->data, out_expected, out->length);
 	free(out->data);
@@ -25,8 +24,7 @@ static void test_base64_encode (void **state) {
 	char *out_expected = "YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXo=";
 	char **out;
 
-	int ret = base64_encode(in, 26, out);
-	assert_int_equal(ret, 0);
+	assert_return_code(base64_encode(in, 26, out), 0);
 	assert_string_equal(*out, out_expected);
 	free(*out);
 }
