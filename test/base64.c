@@ -16,6 +16,8 @@ static void test_base64_decode (void **state) {
 	assert_int_equal(ret, 0);
 	assert_int_equal(**len, 26);
 	assert_memory_equal(*out, out_expected, **len);
+	free(*out);
+	free(*len);
 }
 
 /* A testcase for the output-bytestring -> base64-nullstring decoder */
@@ -27,6 +29,7 @@ static void test_base64_encode (void **state) {
 	int ret = base64_encode(in, 26, out);
 	assert_int_equal(ret, 0);
 	assert_string_equal(*out, out_expected);
+	free(*out);
 }
 
 int main(void) {
