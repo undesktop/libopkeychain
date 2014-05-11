@@ -2,14 +2,14 @@
  * @brief Converts from base64 to a bytestring.
  * Uses OpenSSL BIO internally.
  *
- * @param[in]   src   The string to read from
- * @param[out]  dest  A pointer which will be aimed at the output bytestring
- * @param[out]  len   A pointer to a 
+ * @param[in]   src       The base64 input in null-delimited string
+ * @param[out]  dest      A pointer to a pointer which will be aimed at the output bytestring
+ * @param[out]  dest_len  A pointer to a pointer to an integer (for output length)
  */
 int base64_decode (
-	char *in,
-	char **out,
-	int **len
+	char *src,
+	char **dest,
+	int **dest_len
 );
 
 
