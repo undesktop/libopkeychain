@@ -5,7 +5,7 @@
 
 #include "../src/shared.c"
 
-/* A test case that does nothing and succeeds. */
+/* A testcase for the base64-nullstring -> output-bytestring decoder */
 static void test_base64_decode (void **state) {
 	char *in = "YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXo=";
 	char *out_expected = "abcdefghijklmnopqrstuvwxyz";
@@ -17,6 +17,7 @@ static void test_base64_decode (void **state) {
 	assert_memory_equal(*out, out_expected, **len);
 }
 
+/* A testcase for the output-bytestring -> base64-nullstring decoder */
 static void test_base64_encode (void **state) {
 	char *in = "abcdefghijklmnopqrstuvwxyz";
 	char *out_expected = "YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXo=";
