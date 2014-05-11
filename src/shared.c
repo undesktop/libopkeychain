@@ -24,3 +24,9 @@ int base64_decode
 
 	return 0;
 }
+
+int base64_encode
+(char *src, int src_len, char **dest)
+{
+	return -1;
+}
