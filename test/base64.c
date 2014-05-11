@@ -16,9 +16,20 @@ static void test_base64_decode (void **state) {
 	assert_int_equal(**len, 26);
 	assert_memory_equal(*out, out_expected, **len);
 }
+
+static void test_base64_encode (void **state) {
+	char *in = "abcdefghijklmnopqrstuvwxyz";
+	char *out_expected = "YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXo=";
+	char **out;
+
+	base64_encode(in, 26, out);
+	assert_string_equal(*out, out_expected);
+}
+
 int main(void) {
 	const UnitTest tests[] = {
 		unit_test(test_base64_decode),
+		unit_test(test_base64_encode),
 	};
 	return run_tests(tests);
 }

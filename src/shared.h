@@ -11,3 +11,18 @@ int base64_decode (
 	char **out,
 	int **len
 );
+
+
+/**
+ * @brief Converts from bytestring to base64.
+ * Uses OpenSSL BIO internally.
+ *
+ * @param[in]   src   The bytestring to encode into base64
+ * @param[in]   len   The bytestring's length
+ * @param[out]  dest  A pointer to a pointer which will be aimed at the null-delimited output
+ */
+int base64_encode (
+	char *src,
+	int len,
+	char **dest
+);
