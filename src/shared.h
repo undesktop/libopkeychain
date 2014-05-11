@@ -1,3 +1,8 @@
+typedef struct {
+	unsigned int length;
+	char *data;
+} bytes;
+
 /**
  * @brief Converts from base64 to a bytestring.
  * Uses OpenSSL BIO internally.
@@ -8,8 +13,7 @@
  */
 int base64_decode (
 	char *src,
-	char **dest,
-	int **dest_len
+	bytes *dest
 );
 
 

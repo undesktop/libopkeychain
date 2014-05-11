@@ -9,15 +9,14 @@
 static void test_base64_decode (void **state) {
 	char *in = "YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXo=";
 	char *out_expected = "abcdefghijklmnopqrstuvwxyz";
-	char **out;
-	int **len;
+	bytes *out = malloc(sizeof(bytes));
 
-	int ret = base64_decode(in, out, len);
+	int ret = base64_decode(in, out);
 	assert_int_equal(ret, 0);
-	assert_int_equal(**len, 26);
-	assert_memory_equal(*out, out_expected, **len);
-	free(*out);
-	free(*len);
+	assert_int_equal(out->length, 26);
+	assert_memory_equal(out->data, out_expected, out->length);
+	free(out->data);
+	free(out);
 }
 
 /* A testcase for the output-bytestring -> base64-nullstring decoder */
