@@ -3,10 +3,11 @@
 #include <openssl/evp.h>
 #include <string.h>
 #include <stdio.h>
+#include <math.h>
 #include "shared.h"
 
-int base64_decode
-(char *src, bytes *dest)
+op_err op_base64_decode
+(char *src, op_bytes *dest)
 {
 	BIO *bio, *b64;
 	unsigned int max_len = strlen(src) * 3 / 4;
@@ -22,11 +23,11 @@ int base64_decode
 	dest->length = BIO_read(bio, dest->data, max_len);
 	BIO_free_all(bio);
 
-	return 0;
+	return OP_ERR_NONE;
 }
 
-int base64_encode
-(bytes *src, char **dest)
+op_err op_base64_encode
+(op_bytes *src, char **dest)
 {
 	BIO *bio, *b64;
 	unsigned int enc_len = 4 * ceil((double)src->length / 3);
@@ -44,5 +45,5 @@ int base64_encode
 	BIO_free_all(bio);
 	fclose(stream);
 
-	return 0;
+	return OP_ERR_NONE;
 }

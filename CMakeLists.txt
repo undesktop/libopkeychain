@@ -65,7 +65,7 @@ if ( CMAKE_BUILD_TYPE MATCHES DEBUG )
 	### ACTUAL TESTS ###
 
 	add_executable ( test_base64 EXCLUDE_FROM_ALL test/base64.c )
-	target_link_libraries ( test_base64 ${DEPS_LIBRARIES} ${TESTDEPS_LIBRARIES} )
+	target_link_libraries ( test_base64 m ${DEPS_LIBRARIES} ${TESTDEPS_LIBRARIES} )
 	add_test ( Base64 test_base64 )
 
 	add_custom_target ( build_tests DEPENDS test_base64 )
