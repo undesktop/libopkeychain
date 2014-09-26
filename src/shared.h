@@ -8,8 +8,7 @@ typedef struct {
  * Uses OpenSSL BIO internally.
  *
  * @param[in]   src       The base64 input in null-delimited string
- * @param[out]  dest      A pointer to a pointer which will be aimed at the output bytestring
- * @param[out]  dest_len  A pointer to a pointer to an integer (for output length)
+ * @param[out]  dest      A pointer to a pointer to a bytestring which will be aimed at the output
  */
 int base64_decode (
 	char *src,
@@ -22,11 +21,9 @@ int base64_decode (
  * Uses OpenSSL BIO internally.
  *
  * @param[in]   src      The bytestring to encode into base64
- * @param[in]   src_len  The bytestring's length
  * @param[out]  dest     A pointer to a pointer which will be aimed at the null-delimited output
  */
 int base64_encode (
-	char *src,
-	int src_len,
+	bytes *src,
 	char **dest
 );
