@@ -1,5 +1,6 @@
+#pragma once
 #include "error.h"
-#include "blob.h"
+#include "types.h"
 
 /**
  * @brief Converts from base64 to a bytestring.
@@ -12,7 +13,6 @@ op_err op_base64_decode (
 	char *src,
 	op_blob *dest
 );
-
 
 /**
  * @brief Converts from bytestring to base64.
