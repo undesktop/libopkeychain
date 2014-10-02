@@ -1,11 +1,5 @@
 #include "error.h"
-
-typedef struct {
-	unsigned int length;
-	char *data;
-} op_bytes;
-
-#define op_bytes_free(b) free(b->data); free(b);
+#include "blob.h"
 
 /**
  * @brief Converts from base64 to a bytestring.
@@ -16,7 +10,7 @@ typedef struct {
  */
 op_err op_base64_decode (
 	char *src,
-	op_bytes *dest
+	op_blob *dest
 );
 
 
@@ -28,6 +22,6 @@ op_err op_base64_decode (
  * @param[out]  dest     A pointer to a pointer which will be aimed at the null-delimited output
  */
 op_err op_base64_encode (
-	op_bytes *src,
+	op_blob *src,
 	char **dest
 );
